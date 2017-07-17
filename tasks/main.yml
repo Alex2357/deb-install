@@ -1,2 +1,30 @@
 ---
 # tasks file for deb-install
+
+# Because of that error: The checksum parameter has to be in format <algorithm>:<checksum>
+# I had to specify 2 times with condition. It would be nice if it was possible to do it once.
+- name: downloading deb file {{ url_path }}/{{ deb_file }} with checksum check
+  get_url:
+    url: "{{ url_path }}/{{ deb_file }}"
+    dest: /tmp/{{ deb_file }}
+    checksum: "{{ deb_checksum }}"
+  when: deb_checksum is defined 
+
+- name: downloading deb file {{ url_path }}/{{ deb_file }} no checksum
+  get_url:
+    url: "{{ url_path }}/{{ deb_file }}"
+    dest: /tmp/{{ deb_file }}
+  when: deb_checksum is not defined 
+  
+    
+    # steps taken from http://code.visualstudio.com/docs/setup/linux#_common-questions
+- name: dpkg -i /tmp/{{ deb_file }}
+  apt:
+    deb: /tmp/{{ deb_file }}
+  become: yes
+
+- name: sudo apt-get install -f
+  command: apt-get install -f
+  become: yes
+
+  
