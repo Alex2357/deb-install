@@ -1,7 +1,7 @@
-Role Name
+deb-install
 =========
 
-Downloads & optionally compares hash & installs *.deb file.
+Downloads, optionally compares hash & installs *.deb file.
 
 Requirements
 ------------

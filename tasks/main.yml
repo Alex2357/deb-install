@@ -1,6 +1,4 @@
 ---
-# tasks file for deb-install
-
 # Because of that error: The checksum parameter has to be in format <algorithm>:<checksum>
 # I had to specify 2 times with condition. It would be nice if it was possible to do it once.
 - name: downloading deb file {{ url_path }}/{{ deb_file }} with checksum check
@@ -23,8 +21,9 @@
     deb: /tmp/{{ deb_file }}
   become: yes
 
+#ToDo replace with ansible module apt. How?
 - name: sudo apt-get install -f
-  command: apt-get install -f
+  command: apt-get install -f 
   become: yes
 
   
