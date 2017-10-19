@@ -22,8 +22,8 @@
   become: yes
 
 #ToDo replace with ansible module apt. How?
-- name: sudo apt-get install -f
-  command: apt-get install -f 
+- name: sudo apt-get install -f -y
+  command: apt-get install -f -y
   become: yes
 
   
