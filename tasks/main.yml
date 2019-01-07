@@ -16,14 +16,11 @@
   
     
     # steps taken from http://code.visualstudio.com/docs/setup/linux#_common-questions
-- name: dpkg -i /tmp/{{ deb_file }}
+# It turned out deb option is fully equivalent to: 1) dpkg -i /tmp/{{ deb_file }} 2) sudo apt-get install -f -y   
+- name: debian package install
   apt:
     deb: /tmp/{{ deb_file }}
   become: yes
 
-#ToDo replace with ansible module apt. How?
-- name: sudo apt-get install -f -y
-  command: apt-get install -f -y
-  become: yes
 
   
